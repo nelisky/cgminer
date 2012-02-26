@@ -1241,43 +1241,45 @@ Vals[4]+=ch(Vals[5],Vals[6],Vals[3]);
 Vals[4]+=K[59];
 Vals[4]+=Vals[0];
 
-#if defined(VECTORS2) || defined(VECTORS4)
-Vals[7]+=Ma(Vals[2],Vals[0],Vals[1]);
-Vals[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-Vals[7]+=W[12];
-Vals[7]+=(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U));
-Vals[7]+=W[5];
-Vals[7]+=(rotr(W[10],17)^rotr(W[10],19)^(W[10]>>10U));
-Vals[7]+=Vals[3];
-Vals[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
-Vals[7]+=ch(Vals[4],Vals[5],Vals[6]);
-Vals[7] ^= 0x136032edU;
-#endif
-
 #define FOUND (0x80)
 #define NFLAG (0x7F)
 
-#if defined(VECTORS4)
-	bool result = Vals[7].x & Vals[7].y & Vals[7].z & Vals[7].w;
+#if defined(VECTORS2) || defined(VECTORS4)
+	bool result = any((Vals[7]+
+		Ma(Vals[2],Vals[0],Vals[1])+
+		(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22))+
+		W[12]+
+		(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U))+
+		W[5]+
+		(rotr(W[10],17)^rotr(W[10],19)^(W[10]>>10U))+
+		Vals[3]+
+		(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25))+
+		ch(Vals[4],Vals[5],Vals[6])-
+		0x136032edU) == 0);
+	if (result) {
+		// Repeating this seems crazy but it's faster than setting the
+		// Vals[7] variable on all non-matches.
+		Vals[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+		Vals[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
+		Vals[7]+=W[12];
+		Vals[7]+=(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U));
+		Vals[7]+=W[5];
+		Vals[7]+=(rotr(W[10],17)^rotr(W[10],19)^(W[10]>>10U));
+		Vals[7]+=Vals[3];
+		Vals[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
+		Vals[7]+=ch(Vals[4],Vals[5],Vals[6]);
+		Vals[7] ^= 0x136032edU;
 
-	if (!result) {
 		if (!Vals[7].x)
 			output[FOUND] = output[NFLAG & nonce.x] = nonce.x;
 		if (!Vals[7].y)
 			output[FOUND] = output[NFLAG & nonce.y] = nonce.y;
+#if defined(VECTORS4)
 		if (!Vals[7].z)
 			output[FOUND] = output[NFLAG & nonce.z] = nonce.z;
 		if (!Vals[7].w)
 			output[FOUND] = output[NFLAG & nonce.w] = nonce.w;
-	}
-#elif defined VECTORS2
-	bool result = min(Vals[7].x, Vals[7].y);
-
-	if (!result) {
-		if (!Vals[7].x)
-			output[FOUND] = output[NFLAG & nonce.x] = nonce.x;
-		if (!Vals[7].y)
-			output[FOUND] = output[NFLAG & nonce.y] = nonce.y;
+#endif
 	}
 #else
 	if (!(Vals[7]+
