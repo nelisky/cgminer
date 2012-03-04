@@ -1370,15 +1370,14 @@ ZA[1]+=ZR15(ZA[5]);
 ZA[1]+=ZA[6];
 ZA[1]+=ZR25(ZA[0]);
 
-ZA[24]=ZA[20];
-ZA[24]+=ZA[2];
-
 ZA[19]+=ZMa(ZA[7],ZA[2],ZA[8]);
 ZA[19]+=ZR30(ZA[8]);
-ZA[21]+=ZCh(ZA[24],ZA[23],ZA[18]);
+
+ZA[2]+=ZA[20];
+ZA[21]+=ZCh(ZA[2],ZA[23],ZA[18]);
 ZA[21]+=ZA[12];
 ZA[21]+=0x2748774cU;
-ZA[21]+=ZR26(ZA[24]);
+ZA[21]+=ZR26(ZA[2]);
 ZA[0]+=ZR15(ZA[12]);
 ZA[0]+=ZA[14];
 ZA[0]+=ZR25(ZA[17]);
@@ -1387,7 +1386,7 @@ ZA[20]+=ZMa(ZA[8],ZA[7],ZA[19]);
 ZA[20]+=ZR30(ZA[19]);
 
 ZA[7]+=ZA[21];
-ZA[18]+=ZCh(ZA[7],ZA[24],ZA[23]);
+ZA[18]+=ZCh(ZA[7],ZA[2],ZA[23]);
 ZA[18]+=ZA[1];
 ZA[18]+=0x34b0bcb5U;
 ZA[18]+=ZR26(ZA[7]);
@@ -1399,7 +1398,7 @@ ZA[21]+=ZMa(ZA[19],ZA[8],ZA[20]);
 ZA[21]+=ZR30(ZA[20]);
 
 ZA[8]+=ZA[18];
-ZA[23]+=ZCh(ZA[8],ZA[7],ZA[24]);
+ZA[23]+=ZCh(ZA[8],ZA[7],ZA[2]);
 ZA[23]+=ZA[0];
 ZA[23]+=0x391c0cb3U;
 ZA[23]+=ZR26(ZA[8]);
@@ -1411,10 +1410,10 @@ ZA[18]+=ZMa(ZA[20],ZA[19],ZA[21]);
 ZA[18]+=ZR30(ZA[21]);
 
 ZA[19]+=ZA[23];
-ZA[24]+=ZCh(ZA[19],ZA[8],ZA[7]);
-ZA[24]+=ZA[17];
-ZA[24]+=0x4ed8aa4aU;
-ZA[24]+=ZR26(ZA[19]);
+ZA[2]+=ZCh(ZA[19],ZA[8],ZA[7]);
+ZA[2]+=ZA[17];
+ZA[2]+=0x4ed8aa4aU;
+ZA[2]+=ZR26(ZA[19]);
 ZA[9]+=ZR15(ZA[17]);
 ZA[9]+=ZR25(ZA[13]);
 ZA[9]+=ZA[3];
@@ -1422,7 +1421,7 @@ ZA[9]+=ZA[3];
 ZA[23]+=ZMa(ZA[21],ZA[20],ZA[18]);
 ZA[23]+=ZR30(ZA[18]);
 
-ZA[20]+=ZA[24];
+ZA[20]+=ZA[2];
 ZA[7]+=ZCh(ZA[20],ZA[19],ZA[8]);
 ZA[7]+=ZA[4];
 ZA[7]+=0x5b9cca4fU;
@@ -1431,8 +1430,8 @@ ZA[13]+=ZR15(ZA[4]);
 ZA[13]+=ZA[5];
 ZA[13]+=ZR25(ZA[15]);
 
-ZA[24]+=ZMa(ZA[18],ZA[21],ZA[23]);
-ZA[24]+=ZR30(ZA[23]);
+ZA[2]+=ZMa(ZA[18],ZA[21],ZA[23]);
+ZA[2]+=ZR30(ZA[23]);
 
 ZA[21]+=ZA[7];
 ZA[8]+=ZCh(ZA[21],ZA[20],ZA[19]);
@@ -1443,8 +1442,8 @@ ZA[12]+=ZR15(ZA[9]);
 ZA[12]+=ZR25(ZA[10]);
 ZA[12]+=ZA[15];
 
-ZA[7]+=ZMa(ZA[23],ZA[18],ZA[24]);
-ZA[7]+=ZR30(ZA[24]);
+ZA[7]+=ZMa(ZA[23],ZA[18],ZA[2]);
+ZA[7]+=ZR30(ZA[2]);
 
 ZA[18]+=ZA[8];
 ZA[19]+=ZCh(ZA[18],ZA[21],ZA[20]);
@@ -1458,10 +1457,10 @@ ZA[13]+=ZA[1];
 ZA[13]+=ZR25(ZA[11]);
 
 ZA[8]+=ZR30(ZA[7]);
-ZA[8]+=ZMa(ZA[24],ZA[23],ZA[7]);
+ZA[8]+=ZMa(ZA[2],ZA[23],ZA[7]);
 ZA[23]+=ZA[19];
 ZA[20]+=ZCh(ZA[23],ZA[18],ZA[21]);
-ZA[20]+=ZA[24];
+ZA[20]+=ZA[2];
 ZA[20]+=ZA[12];
 ZA[20]+=0x78a5636fU;
 ZA[20]+=ZR26(ZA[23]);
@@ -1486,7 +1485,7 @@ ZA[18]+=0x8cc70208U;
 ZA[23]+=ZR26(ZA[18]);
 ZA[23]+=ZCh(ZA[18],ZA[21],ZA[20]);
 ZA[23]+=ZA[19];
-ZA[23]+=ZMa(ZA[7],ZA[24],ZA[8]);
+ZA[23]+=ZMa(ZA[7],ZA[2],ZA[8]);
 ZA[23]+=ZR30(ZA[8]);
 ZA[23]+=ZR15(ZA[13]);
 ZA[23]+=ZA[17];
@@ -1506,7 +1505,7 @@ ZA[23]+=ZA[6];
 #endif
 	}
 #else
-	if (ZA[23]+(ZCh(ZA[18],ZA[21],ZA[20])+ZA[19]+ZMa(ZA[7],ZA[24],ZA[8])+
+	if (ZA[23]+(ZCh(ZA[18],ZA[21],ZA[20])+ZA[19]+ZMa(ZA[7],ZA[2],ZA[8])+
 		ZR30(ZA[8])+ZR15(ZA[13])+ZA[17]+ZR25(ZA[14])+ZA[6])+ZR26(ZA[18]) == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce] =  Znonce;
 #endif
