@@ -690,13 +690,12 @@ Vals[4]+=Vals[0];
 Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
 Vals[0]+=Ma(Vals[3],Vals[1],Vals[2]);
 
-W[0]=Vals[0];
-W[0]+=state0;
+Vals[0]+=state0;
 
 Vals[7]+=state7;
 
 W[7]=0xF377ED68U;
-W[7]+=W[0];
+W[7]+=Vals[0];
 
 Vals[3]+=state3;
 
@@ -744,14 +743,14 @@ Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=Vals[3];
 
-Vals[0]=Vals[4];
-Vals[0]+=0x6a09e667U;
+W[0]=Vals[4];
+W[0]+=0x6a09e667U;
 
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[4];
 W[3]+=W[4];
 W[7]+=W[3];
@@ -759,7 +758,7 @@ W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
 W[3]+=Ma(Vals[6],Vals[4],Vals[5]);
 
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[5];
 Vals[2]+=W[5];
 Vals[6]+=Vals[2];
@@ -767,85 +766,85 @@ Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
 Vals[2]+=Ma(Vals[5],W[3],Vals[4]);
 
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[6];
 Vals[1]+=W[6];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[7];
-Vals[0]+=Vals[7];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[7];
+W[0]+=Vals[7];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
 W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=0x5807AA98U;
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 Vals[6]+=(rotr(W[3],6)^rotr(W[3],11)^rotr(W[3],25));
 Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[9];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 Vals[5]+=(rotr(Vals[2],6)^rotr(Vals[2],11)^rotr(Vals[2],25));
 Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[10];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[11];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[12];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
 W[3]+=Ma(Vals[6],Vals[4],Vals[5]);
 
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[13];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
 Vals[2]+=Ma(Vals[5],W[3],Vals[4]);
 
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[14];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=0xC19BF274U;
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=0xC19BF274U;
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
-W[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
-W[7]+=W[0];
+Vals[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
+W[7]+=Vals[0];
 W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=K[16];
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 W[1]+=(rotr(W[2],7)^rotr(W[2],18)^(W[2]>>3U));
 W[1]+=0x00a00000U;
@@ -855,17 +854,17 @@ Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[17];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 W[2]+=(rotr(Vals[3],7)^rotr(Vals[3],18)^(Vals[3]>>3U));
-W[2]+=(rotr(W[0],17)^rotr(W[0],19)^(W[0]>>10U));
+W[2]+=(rotr(Vals[0],17)^rotr(Vals[0],19)^(Vals[0]>>10U));
 Vals[5]+=W[2];
 Vals[5]+=(rotr(Vals[2],6)^rotr(Vals[2],11)^rotr(Vals[2],25));
 Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[18];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 Vals[3]+=(rotr(W[4],7)^rotr(W[4],18)^(W[4]>>3U));
 Vals[3]+=(rotr(W[1],17)^rotr(W[1],19)^(W[1]>>10U));
@@ -873,15 +872,15 @@ Vals[4]+=Vals[3];
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[19];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
 W[4]+=(rotr(W[5],7)^rotr(W[5],18)^(W[5]>>3U));
 W[4]+=(rotr(W[2],17)^rotr(W[2],19)^(W[2]>>10U));
 W[3]+=W[4];
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[20];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
@@ -891,7 +890,7 @@ W[5]+=(rotr(W[6],7)^rotr(W[6],18)^(W[6]>>3U));
 W[5]+=(rotr(Vals[3],17)^rotr(Vals[3],19)^(Vals[3]>>10U));
 Vals[2]+=W[5];
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[21];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
@@ -902,22 +901,22 @@ W[6]+=0x00000100U;
 W[6]+=(rotr(W[4],17)^rotr(W[4],19)^(W[4]>>10U));
 Vals[1]+=W[6];
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[22];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
 Vals[7]+=0x11002000U;
-Vals[7]+=W[0];
+Vals[7]+=Vals[0];
 Vals[7]+=(rotr(W[5],17)^rotr(W[5],19)^(W[5]>>10U));
-Vals[0]+=Vals[7];
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[23];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=Vals[7];
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[23];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
 W[8]=0x80000000U;
 W[8]+=W[1];
@@ -927,8 +926,8 @@ W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=K[24];
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 W[9]=W[2];
 W[9]+=(rotr(Vals[7],17)^rotr(Vals[7],19)^(Vals[7]>>10U));
@@ -938,7 +937,7 @@ Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[25];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 W[10]=Vals[3];
 W[10]+=(rotr(W[8],17)^rotr(W[8],19)^(W[8]>>10U));
@@ -948,7 +947,7 @@ Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[26];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 W[11]=W[4];
 W[11]+=(rotr(W[9],17)^rotr(W[9],19)^(W[9]>>10U));
@@ -956,15 +955,15 @@ Vals[4]+=W[11];
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[27];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
 W[12]=W[5];
 W[12]+=(rotr(W[10],17)^rotr(W[10],19)^(W[10]>>10U));
 W[3]+=W[12];
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[28];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
@@ -974,7 +973,7 @@ W[13]=W[6];
 W[13]+=(rotr(W[11],17)^rotr(W[11],19)^(W[11]>>10U));
 Vals[2]+=W[13];
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[29];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
@@ -985,34 +984,34 @@ W[14]+=Vals[7];
 W[14]+=(rotr(W[12],17)^rotr(W[12],19)^(W[12]>>10U));
 Vals[1]+=W[14];
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[30];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
 W[15]=0x00000100U;
-W[15]+=(rotr(W[0],7)^rotr(W[0],18)^(W[0]>>3U));
+W[15]+=(rotr(Vals[0],7)^rotr(Vals[0],18)^(Vals[0]>>3U));
 W[15]+=W[8];
 W[15]+=(rotr(W[13],17)^rotr(W[13],19)^(W[13]>>10U));
-Vals[0]+=W[15];
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[31];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=W[15];
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[31];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
-W[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
-W[0]+=W[9];
-W[0]+=(rotr(W[14],17)^rotr(W[14],19)^(W[14]>>10U));
-W[7]+=W[0];
+Vals[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
+Vals[0]+=W[9];
+Vals[0]+=(rotr(W[14],17)^rotr(W[14],19)^(W[14]>>10U));
+W[7]+=Vals[0];
 W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=K[32];
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 W[1]+=(rotr(W[2],7)^rotr(W[2],18)^(W[2]>>3U));
 W[1]+=W[10];
@@ -1023,18 +1022,18 @@ Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[33];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 W[2]+=(rotr(Vals[3],7)^rotr(Vals[3],18)^(Vals[3]>>3U));
 W[2]+=W[11];
-W[2]+=(rotr(W[0],17)^rotr(W[0],19)^(W[0]>>10U));
+W[2]+=(rotr(Vals[0],17)^rotr(Vals[0],19)^(Vals[0]>>10U));
 Vals[5]+=W[2];
 Vals[5]+=(rotr(Vals[2],6)^rotr(Vals[2],11)^rotr(Vals[2],25));
 Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[34];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 Vals[3]+=(rotr(W[4],7)^rotr(W[4],18)^(W[4]>>3U));
 Vals[3]+=W[12];
@@ -1043,7 +1042,7 @@ Vals[4]+=Vals[3];
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[35];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
@@ -1051,8 +1050,8 @@ W[4]+=(rotr(W[5],7)^rotr(W[5],18)^(W[5]>>3U));
 W[4]+=W[13];
 W[4]+=(rotr(W[2],17)^rotr(W[2],19)^(W[2]>>10U));
 W[3]+=W[4];
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[36];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
@@ -1063,7 +1062,7 @@ W[5]+=W[14];
 W[5]+=(rotr(Vals[3],17)^rotr(Vals[3],19)^(Vals[3]>>10U));
 Vals[2]+=W[5];
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[37];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
@@ -1074,22 +1073,22 @@ W[6]+=W[15];
 W[6]+=(rotr(W[4],17)^rotr(W[4],19)^(W[4]>>10U));
 Vals[1]+=W[6];
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[38];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
 Vals[7]+=(rotr(W[8],7)^rotr(W[8],18)^(W[8]>>3U));
-Vals[7]+=W[0];
+Vals[7]+=Vals[0];
 Vals[7]+=(rotr(W[5],17)^rotr(W[5],19)^(W[5]>>10U));
-Vals[0]+=Vals[7];
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[39];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=Vals[7];
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[39];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
 W[8]+=(rotr(W[9],7)^rotr(W[9],18)^(W[9]>>3U));
 W[8]+=W[1];
@@ -1099,8 +1098,8 @@ W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=K[40];
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 W[9]+=(rotr(W[10],7)^rotr(W[10],18)^(W[10]>>3U));
 W[9]+=W[2];
@@ -1111,7 +1110,7 @@ Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[41];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 W[10]+=(rotr(W[11],7)^rotr(W[11],18)^(W[11]>>3U));
 W[10]+=Vals[3];
@@ -1122,7 +1121,7 @@ Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[42];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 W[11]+=(rotr(W[12],7)^rotr(W[12],18)^(W[12]>>3U));
 W[11]+=W[4];
@@ -1131,7 +1130,7 @@ Vals[4]+=W[11];
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[43];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
@@ -1139,8 +1138,8 @@ W[12]+=(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U));
 W[12]+=W[5];
 W[12]+=(rotr(W[10],17)^rotr(W[10],19)^(W[10]>>10U));
 W[3]+=W[12];
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[44];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
@@ -1151,7 +1150,7 @@ W[13]+=W[6];
 W[13]+=(rotr(W[11],17)^rotr(W[11],19)^(W[11]>>10U));
 Vals[2]+=W[13];
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[45];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
@@ -1162,33 +1161,33 @@ W[14]+=Vals[7];
 W[14]+=(rotr(W[12],17)^rotr(W[12],19)^(W[12]>>10U));
 Vals[1]+=W[14];
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[46];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
-W[15]+=(rotr(W[0],7)^rotr(W[0],18)^(W[0]>>3U));
+W[15]+=(rotr(Vals[0],7)^rotr(Vals[0],18)^(Vals[0]>>3U));
 W[15]+=W[8];
 W[15]+=(rotr(W[13],17)^rotr(W[13],19)^(W[13]>>10U));
-Vals[0]+=W[15];
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[47];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=W[15];
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[47];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
-W[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
-W[0]+=W[9];
-W[0]+=(rotr(W[14],17)^rotr(W[14],19)^(W[14]>>10U));
-W[7]+=W[0];
+Vals[0]+=(rotr(W[1],7)^rotr(W[1],18)^(W[1]>>3U));
+Vals[0]+=W[9];
+Vals[0]+=(rotr(W[14],17)^rotr(W[14],19)^(W[14]>>10U));
+W[7]+=Vals[0];
 W[7]+=(rotr(Vals[4],6)^rotr(Vals[4],11)^rotr(Vals[4],25));
 W[7]+=ch(Vals[4],Vals[5],Vals[6]);
 W[7]+=K[48];
 W[3]+=W[7];
-W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
-W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
+W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
+W[7]+=Ma(Vals[2],W[0],Vals[1]);
 
 W[1]+=(rotr(W[2],7)^rotr(W[2],18)^(W[2]>>3U));
 W[1]+=W[10];
@@ -1199,18 +1198,18 @@ Vals[6]+=ch(W[3],Vals[4],Vals[5]);
 Vals[6]+=K[49];
 Vals[2]+=Vals[6];
 Vals[6]+=(rotr(W[7],2)^rotr(W[7],13)^rotr(W[7],22));
-Vals[6]+=Ma(Vals[1],W[7],Vals[0]);
+Vals[6]+=Ma(Vals[1],W[7],W[0]);
 
 W[2]+=(rotr(Vals[3],7)^rotr(Vals[3],18)^(Vals[3]>>3U));
 W[2]+=W[11];
-W[2]+=(rotr(W[0],17)^rotr(W[0],19)^(W[0]>>10U));
+W[2]+=(rotr(Vals[0],17)^rotr(Vals[0],19)^(Vals[0]>>10U));
 Vals[5]+=W[2];
 Vals[5]+=(rotr(Vals[2],6)^rotr(Vals[2],11)^rotr(Vals[2],25));
 Vals[5]+=ch(Vals[2],W[3],Vals[4]);
 Vals[5]+=K[50];
 Vals[1]+=Vals[5];
 Vals[5]+=(rotr(Vals[6],2)^rotr(Vals[6],13)^rotr(Vals[6],22));
-Vals[5]+=Ma(Vals[0],Vals[6],W[7]);
+Vals[5]+=Ma(W[0],Vals[6],W[7]);
 
 Vals[3]+=(rotr(W[4],7)^rotr(W[4],18)^(W[4]>>3U));
 Vals[3]+=W[12];
@@ -1219,7 +1218,7 @@ Vals[4]+=Vals[3];
 Vals[4]+=(rotr(Vals[1],6)^rotr(Vals[1],11)^rotr(Vals[1],25));
 Vals[4]+=ch(Vals[1],Vals[2],W[3]);
 Vals[4]+=K[51];
-Vals[0]+=Vals[4];
+W[0]+=Vals[4];
 Vals[4]+=(rotr(Vals[5],2)^rotr(Vals[5],13)^rotr(Vals[5],22));
 Vals[4]+=Ma(W[7],Vals[5],Vals[6]);
 
@@ -1227,8 +1226,8 @@ W[4]+=(rotr(W[5],7)^rotr(W[5],18)^(W[5]>>3U));
 W[4]+=W[13];
 W[4]+=(rotr(W[2],17)^rotr(W[2],19)^(W[2]>>10U));
 W[3]+=W[4];
-W[3]+=(rotr(Vals[0],6)^rotr(Vals[0],11)^rotr(Vals[0],25));
-W[3]+=ch(Vals[0],Vals[1],Vals[2]);
+W[3]+=(rotr(W[0],6)^rotr(W[0],11)^rotr(W[0],25));
+W[3]+=ch(W[0],Vals[1],Vals[2]);
 W[3]+=K[52];
 W[7]+=W[3];
 W[3]+=(rotr(Vals[4],2)^rotr(Vals[4],13)^rotr(Vals[4],22));
@@ -1239,7 +1238,7 @@ W[5]+=W[14];
 W[5]+=(rotr(Vals[3],17)^rotr(Vals[3],19)^(Vals[3]>>10U));
 Vals[2]+=W[5];
 Vals[2]+=(rotr(W[7],6)^rotr(W[7],11)^rotr(W[7],25));
-Vals[2]+=ch(W[7],Vals[0],Vals[1]);
+Vals[2]+=ch(W[7],W[0],Vals[1]);
 Vals[2]+=K[53];
 Vals[6]+=Vals[2];
 Vals[2]+=(rotr(W[3],2)^rotr(W[3],13)^rotr(W[3],22));
@@ -1250,22 +1249,22 @@ W[6]+=W[15];
 W[6]+=(rotr(W[4],17)^rotr(W[4],19)^(W[4]>>10U));
 Vals[1]+=W[6];
 Vals[1]+=(rotr(Vals[6],6)^rotr(Vals[6],11)^rotr(Vals[6],25));
-Vals[1]+=ch(Vals[6],W[7],Vals[0]);
+Vals[1]+=ch(Vals[6],W[7],W[0]);
 Vals[1]+=K[54];
 Vals[5]+=Vals[1];
 Vals[1]+=(rotr(Vals[2],2)^rotr(Vals[2],13)^rotr(Vals[2],22));
 Vals[1]+=Ma(Vals[4],Vals[2],W[3]);
 
 Vals[7]+=(rotr(W[8],7)^rotr(W[8],18)^(W[8]>>3U));
-Vals[7]+=W[0];
+Vals[7]+=Vals[0];
 Vals[7]+=(rotr(W[5],17)^rotr(W[5],19)^(W[5]>>10U));
-Vals[0]+=Vals[7];
-Vals[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
-Vals[0]+=ch(Vals[5],Vals[6],W[7]);
-Vals[0]+=K[55];
-Vals[4]+=Vals[0];
-Vals[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
-Vals[0]+=Ma(W[3],Vals[1],Vals[2]);
+W[0]+=Vals[7];
+W[0]+=(rotr(Vals[5],6)^rotr(Vals[5],11)^rotr(Vals[5],25));
+W[0]+=ch(Vals[5],Vals[6],W[7]);
+W[0]+=K[55];
+Vals[4]+=W[0];
+W[0]+=(rotr(Vals[1],2)^rotr(Vals[1],13)^rotr(Vals[1],22));
+W[0]+=Ma(W[3],Vals[1],Vals[2]);
 
 W[8]+=(rotr(W[9],7)^rotr(W[9],18)^(W[9]>>3U));
 W[8]+=W[1];
@@ -1300,14 +1299,14 @@ Vals[4]+=(rotr(W[12],7)^rotr(W[12],18)^(W[12]>>3U));
 Vals[4]+=W[4];
 Vals[4]+=(rotr(W[9],17)^rotr(W[9],19)^(W[9]>>10U));
 Vals[4]+=K[59];
-Vals[4]+=Vals[0];
+Vals[4]+=W[0];
 
 #define FOUND (0x80)
 #define NFLAG (0x7F)
 
 #if defined(VECTORS2) || defined(VECTORS4)
-	W[7]+=Ma(Vals[2],Vals[0],Vals[1]);
-	W[7]+=(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22));
+	W[7]+=Ma(Vals[2],W[0],Vals[1]);
+	W[7]+=(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22));
 	W[7]+=W[12];
 	W[7]+=(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U));
 	W[7]+=W[5];
@@ -1330,8 +1329,8 @@ Vals[4]+=Vals[0];
 	}
 #else
 	if ((W[7]+
-		Ma(Vals[2],Vals[0],Vals[1])+
-		(rotr(Vals[0],2)^rotr(Vals[0],13)^rotr(Vals[0],22))+
+		Ma(Vals[2],W[0],Vals[1])+
+		(rotr(W[0],2)^rotr(W[0],13)^rotr(W[0],22))+
 		W[12]+
 		(rotr(W[13],7)^rotr(W[13],18)^(W[13]>>3U))+
 		W[5]+
