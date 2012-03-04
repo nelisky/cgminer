@@ -1457,9 +1457,8 @@ ZA[12]+=ZA[15];
 ZA[15]=ZA[2];
 ZA[15]+=ZA[16];
 
-ZA[9]=ZA[19];
-ZA[9]+=ZMa(ZA[7],ZA[2],ZA[5]);
-ZA[9]+=ZR30(ZA[5]);
+ZA[19]+=ZMa(ZA[7],ZA[2],ZA[5]);
+ZA[19]+=ZR30(ZA[5]);
 ZA[22]+=ZCh(ZA[15],ZA[4],ZA[3]);
 ZA[22]+=ZA[13];
 ZA[22]+=0x748f82eeU;
@@ -1470,8 +1469,8 @@ ZA[13]+=ZA[10];
 ZA[13]+=ZA[1];
 ZA[13]+=ZR25(ZA[11]);
 
-ZA[16]+=ZR30(ZA[9]);
-ZA[16]+=ZMa(ZA[5],ZA[7],ZA[9]);
+ZA[16]+=ZR30(ZA[19]);
+ZA[16]+=ZMa(ZA[5],ZA[7],ZA[19]);
 ZA[7]+=ZA[22];
 ZA[3]+=ZCh(ZA[7],ZA[15],ZA[4]);
 ZA[3]+=ZA[5];
@@ -1480,7 +1479,7 @@ ZA[3]+=0x78a5636fU;
 ZA[3]+=ZR26(ZA[7]);
 ZA[4]+=ZR26(ZA[3]);
 ZA[4]+=ZCh(ZA[3],ZA[7],ZA[15]);
-ZA[4]+=ZA[9];
+ZA[4]+=ZA[19];
 ZA[4]+=ZA[13];
 ZA[4]+=0x84c87814U;
 ZA[15]+=ZR26(ZA[4]);
@@ -1499,7 +1498,7 @@ ZA[15]+=0x8cc70208U;
 ZA[7]+=ZR26(ZA[15]);
 ZA[7]+=ZCh(ZA[15],ZA[4],ZA[3]);
 ZA[7]+=ZA[22];
-ZA[7]+=ZMa(ZA[9],ZA[5],ZA[16]);
+ZA[7]+=ZMa(ZA[19],ZA[5],ZA[16]);
 ZA[7]+=ZR30(ZA[16]);
 ZA[7]+=ZR15(ZA[13]);
 ZA[7]+=ZA[17];
@@ -1519,7 +1518,7 @@ ZA[7]+=ZA[6];
 #endif
 	}
 #else
-	if (ZA[7]+(ZCh(ZA[15],ZA[4],ZA[3])+ZA[22]+ZMa(ZA[9],ZA[5],ZA[16])+
+	if (ZA[7]+(ZCh(ZA[15],ZA[4],ZA[3])+ZA[22]+ZMa(ZA[19],ZA[5],ZA[16])+
 		ZR30(ZA[16])+ZR15(ZA[13])+ZA[17]+ZR25(ZA[14])+ZA[6])+ZR26(ZA[15]) == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce] =  Znonce;
 #endif
