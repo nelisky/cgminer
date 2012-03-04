@@ -1470,23 +1470,21 @@ ZA[13]+=ZA[10];
 ZA[13]+=ZA[1];
 ZA[13]+=ZR25(ZA[11]);
 
-ZA[10]=ZA[7];
-ZA[10]+=ZA[22];
-
-ZA[16]+=ZMa(ZA[5],ZA[7],ZA[9]);
 ZA[16]+=ZR30(ZA[9]);
-ZA[3]+=ZCh(ZA[10],ZA[15],ZA[4]);
+ZA[16]+=ZMa(ZA[5],ZA[7],ZA[9]);
+ZA[7]+=ZA[22];
+ZA[3]+=ZCh(ZA[7],ZA[15],ZA[4]);
 ZA[3]+=ZA[5];
 ZA[3]+=ZA[12];
 ZA[3]+=0x78a5636fU;
-ZA[3]+=ZR26(ZA[10]);
+ZA[3]+=ZR26(ZA[7]);
 ZA[4]+=ZR26(ZA[3]);
-ZA[4]+=ZCh(ZA[3],ZA[10],ZA[15]);
+ZA[4]+=ZCh(ZA[3],ZA[7],ZA[15]);
 ZA[4]+=ZA[9];
 ZA[4]+=ZA[13];
 ZA[4]+=0x84c87814U;
 ZA[15]+=ZR26(ZA[4]);
-ZA[15]+=ZCh(ZA[4],ZA[3],ZA[10]);
+ZA[15]+=ZCh(ZA[4],ZA[3],ZA[7]);
 ZA[15]+=ZA[16];
 ZA[15]+=ZR15(ZA[12]);
 ZA[15]+=ZA[0];
@@ -1498,30 +1496,30 @@ ZA[15]+=0x8cc70208U;
 #define NFLAG (0x7F)
 
 #if defined(VECTORS2) || defined(VECTORS4)
-ZA[10]+=ZR26(ZA[15]);
-ZA[10]+=ZCh(ZA[15],ZA[4],ZA[3]);
-ZA[10]+=ZA[22];
-ZA[10]+=ZMa(ZA[9],ZA[5],ZA[16]);
-ZA[10]+=ZR30(ZA[16]);
-ZA[10]+=ZR15(ZA[13]);
-ZA[10]+=ZA[17];
-ZA[10]+=ZR25(ZA[14]);
-ZA[10]+=ZA[6];
+ZA[7]+=ZR26(ZA[15]);
+ZA[7]+=ZCh(ZA[15],ZA[4],ZA[3]);
+ZA[7]+=ZA[22];
+ZA[7]+=ZMa(ZA[9],ZA[5],ZA[16]);
+ZA[7]+=ZR30(ZA[16]);
+ZA[7]+=ZR15(ZA[13]);
+ZA[7]+=ZA[17];
+ZA[7]+=ZR25(ZA[14]);
+ZA[7]+=ZA[6];
 
-	if (any(ZA[10] == 0x136032EDU)) {
-		if (ZA[10].x == 0x136032EDU)
+	if (any(ZA[7] == 0x136032EDU)) {
+		if (ZA[7].x == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce.x] =  Znonce.x;
-		if (ZA[10].y == 0x136032EDU)
+		if (ZA[7].y == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce.y] =  Znonce.y;
 #if defined(VECTORS4)
-		if (ZA[10].z == 0x136032EDU)
+		if (ZA[7].z == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce.z] =  Znonce.z;
-		if (ZA[10].w == 0x136032EDU)
+		if (ZA[7].w == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce.w] =  Znonce.w;
 #endif
 	}
 #else
-	if (ZA[10]+(ZCh(ZA[15],ZA[4],ZA[3])+ZA[22]+ZMa(ZA[9],ZA[5],ZA[16])+
+	if (ZA[7]+(ZCh(ZA[15],ZA[4],ZA[3])+ZA[22]+ZMa(ZA[9],ZA[5],ZA[16])+
 		ZR30(ZA[16])+ZR15(ZA[13])+ZA[17]+ZR25(ZA[14])+ZA[6])+ZR26(ZA[15]) == 0x136032EDU)
 			output[FOUND] = output[NFLAG & Znonce] =  Znonce;
 #endif
