@@ -74,6 +74,8 @@ static void ztex_detect(void)
 		ztex->threads = 1;
 		ztex->device_ztex->fpgaNum = 0;
 		ztex->device_ztex->root = ztex->device_ztex;
+		ztex->device_path = calloc(strlen((char*)ztex->device_ztex->snString)+3, sizeof(char));
+		sprintf(ztex->device_path, "%s-1", ztex->device_ztex->snString);
 		add_cgpu(ztex);
 
 		fpgacount = libztex_numberOfFpgas(ztex->device_ztex);
@@ -91,6 +93,8 @@ static void ztex_detect(void)
 			ztex_slave->fpgaNum = j;
 			ztex_slave->root = ztex_devices[i]->dev;
 			ztex_slave->repr[strlen(ztex_slave->repr) - 1] = ('1' + j);
+			ztex->device_path = calloc(strlen((char *)ztex_slave->snString)+3, sizeof(char));
+			sprintf(ztex->device_path, "%s-%d", ztex_slave->snString, 1+j);
 			add_cgpu(ztex);
 		}
 
@@ -135,7 +139,7 @@ static bool ztex_updateFreq(struct libztex_device* ztex)
 	maxM = ztex->freqMDefault;
 	while (maxM < ztex->freqMaxM && ztex->errorWeight[maxM + 1] > 100)
 		maxM++;
-	if ((bestM < (1.0 - LIBZTEX_OVERHEATTHRESHOLD) * maxM) && bestM < maxM - 1) {
+	if ((bestM < (1.0 - LIBZTEX_OVERHEATTHRESHOLD) * maxM) && bestM < (maxM - 1)) {
 		ztex_selectFpga(ztex);
 		libztex_resetFpga(ztex);
 		ztex_releaseFpga(ztex);
@@ -230,7 +234,7 @@ static uint64_t ztex_scanhash(struct thr_info *thr, struct work *work,
 	}
 	memset(lastnonce, 0, sizeof(uint32_t)*ztex->numNonces);
 	
-	backlog_max = ztex->numNonces * (1 + ztex->extraSolutions);
+	backlog_max = (ztex->numNonces * (1 + ztex->extraSolutions)) * 2;
 	backlog = malloc(sizeof(uint32_t) * backlog_max);
 	if (backlog == NULL) {
 		applog(LOG_ERR, "%s: failed to allocate backlog[%d]", ztex->repr, backlog_max);
@@ -326,6 +330,8 @@ static uint64_t ztex_scanhash(struct thr_info *thr, struct work *work,
 	if (ztex->errorRate[ztex->freqM] > ztex->maxErrorRate[ztex->freqM])
 		ztex->maxErrorRate[ztex->freqM] = ztex->errorRate[ztex->freqM];
 
+	i = ztex->freqM;
+
 	if (!ztex_updateFreq(ztex)) {
 		// Something really serious happened, so mark this thread as dead!
 		free(lastnonce);
@@ -334,6 +340,9 @@ static uint64_t ztex_scanhash(struct thr_info *thr, struct work *work,
 		return 0;
 	}
 
+	if (ztex->freqM != i) {
+		thr->cgpu->hw_errors = 0;
+	}
 	applog(LOG_DEBUG, "%s: exit %1.8X", ztex->repr, noncecnt);
 
 	work->blk.nonce = 0xffffffff;
@@ -349,6 +358,7 @@ static void ztex_statline_before(char *buf, struct cgpu_info *cgpu)
 	if (cgpu->deven == DEV_ENABLED) {
 		tailsprintf(buf, "%s-%d | ", cgpu->device_ztex->snString, cgpu->device_ztex->fpgaNum+1);
 		tailsprintf(buf, "%0.2fMhz | ", cgpu->device_ztex->freqM1 * (cgpu->device_ztex->freqM + 1));
+		tailsprintf(buf, "E: %0.2f%% | ", cgpu->device_ztex->errorRate[cgpu->device_ztex->freqM]);
 	}
 }
 
@@ -381,6 +391,7 @@ static void ztex_shutdown(struct thr_info *thr)
 		libztex_destroy_device(thr->cgpu->device_ztex);
 		thr->cgpu->device_ztex = NULL;
 	}
+	free(thr->cgpu->device_path);
 }
 
 static void ztex_disable(struct thr_info *thr)
